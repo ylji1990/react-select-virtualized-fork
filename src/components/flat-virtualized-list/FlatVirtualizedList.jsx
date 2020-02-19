@@ -20,6 +20,8 @@ let FlatListVirtualized = (props) => {
     defaultValue,
     valueGetter,
     formatOptionLabel,
+    renderListWrapper,
+    afterListRender
   } = props;
 
   useEffect(() => {
@@ -31,7 +33,11 @@ let FlatListVirtualized = (props) => {
   }, [listComponent, queueScrollToIdx, focusedItemIndex, options]);
 
   useEffect(()=>{
-    props.afterListRender && props.afterListRender(listComponent.current);
+    const cb = afterListRender && afterListRender(
+      listComponent && listComponent.current);
+    return ()=>{
+      cb && cb();
+    }
   }, [listComponent])
 
   const onOptionFocused = useCallback(
@@ -120,7 +126,7 @@ let FlatListVirtualized = (props) => {
                 width={width}
               />
             );
-            return  props.renderListWrapper ? props.renderListWrapper(list) : list;
+            return renderListWrapper ? renderListWrapper(list) : list;
           }}
         </InfiniteLoader>
       )}
