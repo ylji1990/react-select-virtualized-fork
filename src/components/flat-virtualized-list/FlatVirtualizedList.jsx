@@ -135,6 +135,7 @@ FlatListVirtualized.propTypes = {
   valueGetter: PropTypes.func,
   options: PropTypes.array.isRequired,
   minimumBatchSize: PropTypes.number,
+  renderListWrapper: PropTypes.func,
 };
 
 FlatListVirtualized.defaultProps = {

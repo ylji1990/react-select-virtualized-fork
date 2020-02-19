@@ -116,24 +116,27 @@ let GroupVirtualizedList = (props) => {
           rowCount={props.children.length || 0}
           minimumBatchSize={props.minimumBatchSize}
         >
-          {({ onRowsRendered, registerChild }) => (
-            <List
-              ref={(element) => {
-                registerChild(element);
-                listComponent = {
-                  current: element,
-                };
-                return element;
-              }}
-              onRowsRendered={onRowsRendered}
-              height={height}
-              scrollToIndex={scrollToIndex}
-              rowCount={props.flatCollection.length || 0}
-              rowHeight={rowHeight}
-              rowRenderer={rowRenderer}
-              width={width}
-            />
-          )}
+          {({ onRowsRendered, registerChild }) => {
+            const list = (
+              <List
+                ref={(element) => {
+                  registerChild(element);
+                  listComponent = {
+                    current: element,
+                  };
+                  return element;
+                }}
+                onRowsRendered={onRowsRendered}
+                height={height}
+                scrollToIndex={scrollToIndex}
+                rowCount={props.flatCollection.length || 0}
+                rowHeight={rowHeight}
+                rowRenderer={rowRenderer}
+                width={width}
+              />
+            )
+            return props.renderListWrapper ? props.renderListWrapper(list) : list;
+          }}
         </InfiniteLoader>
       )}
     </AutoSizer>
@@ -154,6 +157,7 @@ GroupVirtualizedList.propTypes = {
   formatOptionLabel: PropTypes.func,
   flatCollection: PropTypes.array.isRequired,
   minimumBatchSize: PropTypes.number,
+  renderListWrapper: PropTypes.func,
 };
 
 GroupVirtualizedList.defaultProps = {
