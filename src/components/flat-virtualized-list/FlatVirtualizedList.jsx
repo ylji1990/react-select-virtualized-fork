@@ -30,6 +30,10 @@ let FlatListVirtualized = (props) => {
     }
   }, [listComponent, queueScrollToIdx, focusedItemIndex, options]);
 
+  useEffect(()=>{
+    props.afterListRender && props.afterListRender(listComponent.current);
+  }, [listComponent])
+
   const onOptionFocused = useCallback(
     ({ index, isVisible }) => {
       if (index !== undefined && focusedItemIndex !== index && isVisible) {
@@ -136,6 +140,7 @@ FlatListVirtualized.propTypes = {
   options: PropTypes.array.isRequired,
   minimumBatchSize: PropTypes.number,
   renderListWrapper: PropTypes.func,
+  afterListRender: PropTypes.func,
 };
 
 FlatListVirtualized.defaultProps = {

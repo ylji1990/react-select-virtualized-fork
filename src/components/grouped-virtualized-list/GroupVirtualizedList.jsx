@@ -32,6 +32,10 @@ let GroupVirtualizedList = (props) => {
     }
   }, [listComponent, queueScrollToIdx, focusedItemIndex, flatCollection]);
 
+  useEffect(()=>{
+    props.afterListRender && props.afterListRender(listComponent.current);
+  }, [listComponent])
+
   const onOptionFocused = useCallback(
     ({ index, isVisible }) => {
       if (index !== undefined && isVisible) {
@@ -158,6 +162,7 @@ GroupVirtualizedList.propTypes = {
   flatCollection: PropTypes.array.isRequired,
   minimumBatchSize: PropTypes.number,
   renderListWrapper: PropTypes.func,
+  afterListRender: PropTypes.func,
 };
 
 GroupVirtualizedList.defaultProps = {

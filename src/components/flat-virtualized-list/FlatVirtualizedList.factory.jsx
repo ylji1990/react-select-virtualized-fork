@@ -8,7 +8,8 @@ const FlatVirtualizedListFactory = ({
   defaultValue,
   valueGetter,
   formatOptionLabel,
-  renderListWrapper
+  renderListWrapper,
+  afterListRender,
 }) =>
   memo((props) => {
     const selectedValue = props.getValue() ? props.getValue()[0] : undefined;
@@ -26,6 +27,7 @@ const FlatVirtualizedListFactory = ({
         valueGetter={valueGetter}
         formatOptionLabel={formatOptionLabel}
         renderListWrapper={renderListWrapper}
+        afterListRender={afterListRender}
       />
     );
   });
