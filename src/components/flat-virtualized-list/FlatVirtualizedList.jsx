@@ -97,24 +97,27 @@ let FlatListVirtualized = (props) => {
           rowCount={props.children.length || 0}
           minimumBatchSize={props.minimumBatchSize}
         >
-          {({ onRowsRendered, registerChild }) => (
-            <List
-              ref={(element) => {
-                registerChild(element);
-                listComponent = {
-                  current: element,
-                };
-                return element;
-              }}
-              onRowsRendered={onRowsRendered}
-              height={height}
-              scrollToIndex={scrollToIndex}
-              rowCount={props.children.length}
-              rowHeight={props.optionHeight}
-              rowRenderer={rowRenderer}
-              width={width}
-            />
-          )}
+          {({ onRowsRendered, registerChild }) => {
+            const list = (
+              <List
+                ref={(element) => {
+                  registerChild(element);
+                  listComponent = {
+                    current: element,
+                  };
+                  return element;
+                }}
+                onRowsRendered={onRowsRendered}
+                height={height}
+                scrollToIndex={scrollToIndex}
+                rowCount={props.children.length}
+                rowHeight={props.optionHeight}
+                rowRenderer={rowRenderer}
+                width={width}
+              />
+            );
+            return  props.renderListWrapper ? props.renderListWrapper(list) : list;
+          }}
         </InfiniteLoader>
       )}
     </AutoSizer>

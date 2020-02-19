@@ -12,8 +12,6 @@ import { buildErrorText } from '@rsv-lib/error';
 
 const LAG_INDICATOR = 1000;
 
-const loadingMessage = () => <div>...</div>;
-
 let FastReactSelect = (propsIn, ref) => {
   const {
     asyncLoadOptions,
@@ -96,7 +94,6 @@ let FastReactSelect = (propsIn, ref) => {
       <ReactSelectAsyncCreatableSelect
         ref={ref}
         {...props}
-        loadingMessage={loadingMessage}
         // this is a limitation on react-select and async, it does not work when caching options
         cacheOptions={!grouped}
         loadOptions={loadOptions}
@@ -119,7 +116,6 @@ let FastReactSelect = (propsIn, ref) => {
       <ReactAsync
         ref={ref}
         {...props}
-        loadingMessage={loadingMessage}
         // this is a limitation on react-select and async, it does not work when caching options
         cacheOptions={!grouped}
         loadOptions={loadOptions}
