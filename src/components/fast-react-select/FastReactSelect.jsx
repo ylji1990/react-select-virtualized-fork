@@ -11,6 +11,8 @@ import { useDebouncedCallback } from '@rsv-hooks/use-debaunced-callback';
 import { buildErrorText } from '@rsv-lib/error';
 
 const LAG_INDICATOR = 1000;
+/** ylji remove */
+// const loadingMessage = () => <div>...</div>;
 
 let FastReactSelect = (propsIn, ref) => {
   const {
@@ -94,6 +96,8 @@ let FastReactSelect = (propsIn, ref) => {
       <ReactSelectAsyncCreatableSelect
         ref={ref}
         {...props}
+        /** ylji remove */
+        // loadingMessage={loadingMessage}
         // this is a limitation on react-select and async, it does not work when caching options
         cacheOptions={!grouped}
         loadOptions={loadOptions}
@@ -116,6 +120,8 @@ let FastReactSelect = (propsIn, ref) => {
       <ReactAsync
         ref={ref}
         {...props}
+        /** ylji remove */
+        // loadingMessage={loadingMessage}
         // this is a limitation on react-select and async, it does not work when caching options
         cacheOptions={!grouped}
         loadOptions={loadOptions}

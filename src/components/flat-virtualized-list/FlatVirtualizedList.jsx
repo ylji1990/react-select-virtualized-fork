@@ -20,8 +20,10 @@ let FlatListVirtualized = (props) => {
     defaultValue,
     valueGetter,
     formatOptionLabel,
+    /** ylji add ↓ */
     renderListWrapper,
     afterListRender
+    /** ylji add ↑ */
   } = props;
 
   useEffect(() => {
@@ -32,6 +34,7 @@ let FlatListVirtualized = (props) => {
     }
   }, [listComponent, queueScrollToIdx, focusedItemIndex, options]);
 
+  /** ylji add ↓ */
   useEffect(()=>{
     const cb = afterListRender && afterListRender(
       listComponent && listComponent.current);
@@ -39,6 +42,7 @@ let FlatListVirtualized = (props) => {
       cb && cb();
     }
   }, [listComponent])
+  /** ylji add ↑ */
 
   const onOptionFocused = useCallback(
     ({ index, isVisible }) => {
@@ -107,6 +111,25 @@ let FlatListVirtualized = (props) => {
           rowCount={props.children.length || 0}
           minimumBatchSize={props.minimumBatchSize}
         >
+          {/** ylji update ↓ */}
+          {/*{({ onRowsRendered, registerChild }) => (*/}
+          {/*  <List*/}
+          {/*    ref={(element) => {*/}
+          {/*      registerChild(element);*/}
+          {/*      listComponent = {*/}
+          {/*        current: element,*/}
+          {/*      };*/}
+          {/*      return element;*/}
+          {/*    }}*/}
+          {/*    onRowsRendered={onRowsRendered}*/}
+          {/*    height={height}*/}
+          {/*    scrollToIndex={scrollToIndex}*/}
+          {/*    rowCount={props.children.length}*/}
+          {/*    rowHeight={props.optionHeight}*/}
+          {/*    rowRenderer={rowRenderer}*/}
+          {/*    width={width}*/}
+          {/*  />*/}
+          {/*)}*/}
           {({ onRowsRendered, registerChild }) => {
             const list = (
               <List
@@ -128,6 +151,7 @@ let FlatListVirtualized = (props) => {
             );
             return renderListWrapper ? renderListWrapper(list) : list;
           }}
+          {/** ylji update ↑ */}
         </InfiniteLoader>
       )}
     </AutoSizer>
@@ -145,8 +169,10 @@ FlatListVirtualized.propTypes = {
   valueGetter: PropTypes.func,
   options: PropTypes.array.isRequired,
   minimumBatchSize: PropTypes.number,
+  /** ylji add ↓ */
   renderListWrapper: PropTypes.func,
   afterListRender: PropTypes.func,
+  /** ylji add ↑ */
 };
 
 FlatListVirtualized.defaultProps = {

@@ -9,15 +9,19 @@ export const buildListComponents = (props) => {
         groupHeaderHeight: props.groupHeaderHeight,
         optionHeight: props.optionHeight,
         defaultValue: props.defaultValue,
+        /** ylji add ↓ */
         renderListWrapper: props.renderListWrapper,
         afterListRender: props.afterListRender,
+        /** ylji add ↑ */
       })
     : FlatVirtualizedListFactory({
         optionHeight: props.optionHeight,
         defaultValue: props.defaultValue,
         formatOptionLabel: props.formatOptionLabel,
+        /** ylji add ↓ */
         renderListWrapper: props.renderListWrapper,
         afterListRender: props.afterListRender,
+        /** ylji add ↑ */
       });
 
   return components;

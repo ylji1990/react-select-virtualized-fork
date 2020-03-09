@@ -10,8 +10,10 @@ const GroupedVirtualizedListFactory = ({
   groupHeaderHeight = menuListItemHeight,
   defaultValue,
   valueGetter,
+  /** ylji add ↓ */
   renderListWrapper,
   afterListRender
+  /** ylji add ↑ */
 }) =>
   memo((props) => {
     const children = [...flattenGroupedOptions(props.children)];
@@ -31,8 +33,10 @@ const GroupedVirtualizedListFactory = ({
         groupHeaderHeight={groupHeaderHeight}
         valueGetter={valueGetter}
         defaultValue={defaultValue}
+        /** ylji add ↓ */
         renderListWrapper={renderListWrapper}
         afterListRender={afterListRender}
+        /** ylji add ↑ */
       />
     );
   });
